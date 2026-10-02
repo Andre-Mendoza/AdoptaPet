@@ -1,31 +1,32 @@
-# PetCare
+# AdoptaPet
 
-## Sistema de gestión para servicios veterinarios
+## Sistema web de gestión de adopción de mascotas
 
 ### Descripción
 
-PetCare es un sistema diseñado para facilitar la gestión de servicios veterinarios, permitiendo centralizar la información de propietarios, mascotas, citas y atención veterinaria.
+AdoptaPet es un sistema web diseñado para facilitar la gestión de adopción de mascotas, permitiendo organizar la información de usuarios, mascotas, solicitudes de adopción y adopciones.
 
 ### Objetivo
 
-Desarrollar una solución que permita organizar y gestionar de manera eficiente la información y los procesos relacionados con la atención de mascotas.
+Desarrollar una solución web que permita gestionar de manera organizada y eficiente el proceso de adopción de mascotas.
 
 ### Funcionalidades principales
 
-- Gestión de propietarios.
-- Gestión de mascotas.
-- Gestión de citas.
-- Registro de consultas veterinarias.
-- Consulta del historial de las mascotas.
-- Gestión de vacunas y servicios veterinarios.
+- Registro de usuarios.
+- Registro y gestión de mascotas.
+- Consulta de mascotas disponibles.
+- Solicitudes de adopción.
+- Gestión de solicitudes.
+- Aprobación o rechazo de solicitudes.
+- Registro de adopciones.
+- Seguimiento básico de adopciones.
 - Gestión de usuarios y roles.
 
 ### Equipo de trabajo
 
 - Andrea Mendoza
-- Isa
-- Yuleisy
-
+- Yuleisy Reñasco Peña
+- Endrina Benwell Ancher
 
 ### Proyecto académico
 
