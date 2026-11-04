@@ -1,0 +1,122 @@
+
+/* =================================
+   ESTILOS GENERALES - ADOPTAPET
+================================= */
+
+:root {
+    --verde-principal: #244C38;
+    --verde-secundario: #37664B;
+    --verde-claro: #E4EDE3;
+    --fondo: #F6F3E9;
+    --blanco: #FFFFFF;
+    --texto: #303B33;
+    --borde: #E2E5DD;
+}
+
+body {
+    margin: 0;
+    background-color: var(--fondo);
+    color: var(--texto);
+    font-family: Arial, sans-serif;
+}
+
+/* Menú lateral */
+
+.menu-lateral {
+    width: 250px;
+    min-height: 100vh;
+    background-color: var(--verde-principal);
+    color: var(--blanco);
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 25px 15px;
+}
+
+.menu-lateral .marca {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 35px;
+    padding: 0 10px;
+}
+
+.menu-lateral a {
+    display: block;
+    color: var(--blanco);
+    text-decoration: none;
+    padding: 13px 15px;
+    margin-bottom: 5px;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+}
+
+.menu-lateral a:hover,
+.menu-lateral a.activo {
+    background-color: var(--verde-secundario);
+}
+
+/* Contenido principal */
+
+.contenido-principal {
+    margin-left: 250px;
+    padding: 30px;
+    min-height: 100vh;
+}
+
+/* Tarjetas */
+
+.tarjeta {
+    background-color: var(--blanco);
+    border: 1px solid var(--borde);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* Formularios */
+
+.form-control,
+.form-select {
+    border-radius: 8px;
+    border-color: var(--borde);
+    padding: 10px;
+}
+
+/* Botones */
+
+.btn-principal {
+    background-color: var(--verde-principal);
+    color: var(--blanco);
+    border: none;
+    border-radius: 8px;
+    padding: 10px 18px;
+}
+
+.btn-principal:hover {
+    background-color: var(--verde-secundario);
+    color: var(--blanco);
+}
+
+/* Tablas */
+
+.table {
+    background-color: var(--blanco);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Adaptación a pantallas pequeñas */
+
+@media (max-width: 768px) {
+    .menu-lateral {
+        position: relative;
+        width: 100%;
+        min-height: auto;
+    }
+
+    .contenido-principal {
+        margin-left: 0;
+        padding: 20px;
+    }
+}
+

@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{general/head :: head}"></head>
+<body>
+    <header th:replace="~{general/header :: header}"></header>
+
+    <main class="contenido-principal">
+        <h2>Gestión de Refugios</h2>
+
+        <a th:href="@{/refugio/nuevo}" class="btn btn-primary mb-3">
+            Nuevo Refugio
+        </a>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Dirección</th>
+                        <th>Teléfono</th>
+                        <th>Correo electrónico</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="refugio : ${refugios}">
+                        <td th:text="${refugio.idRefugio}"></td>
+                        <td th:text="${refugio.nombre}"></td>
+                        <td th:text="${refugio.direccion}"></td>
+                        <td th:text="${refugio.telefono}"></td>
+                        <td th:text="${refugio.correoElectronico}"></td>
+                        <td>
+                            <a th:href="@{/refugio/modificar/{id}(id=${refugio.idRefugio})}"
+                               class="btn btn-warning btn-sm">Modificar</a>
+
+                            <a th:href="@{/refugio/eliminar/{id}(id=${refugio.idRefugio})}"
+                               class="btn btn-danger btn-sm"
+                               onclick="return confirm('¿Desea eliminar este refugio?')">
+                                Eliminar
+                            </a>
+                        </td>
+                    </tr>
+
+                    <tr th:if="${#lists.isEmpty(refugios)}">
+                        <td colspan="6" class="text-center">
+                            No hay refugios registrados.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer th:replace="~{general/footer :: footer}"></footer>
+</body>
+</html>
+

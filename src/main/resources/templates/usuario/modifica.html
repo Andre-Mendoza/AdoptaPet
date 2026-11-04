@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{general/head :: head}">
+    <title>AdoptaPet - Formulario de Usuario</title>
+</head>
+
+<body>
+
+    <header th:replace="~{general/header :: header}"></header>
+
+    <main class="contenido-principal">
+
+        <h2 class="mb-4">Formulario de Usuario</h2>
+
+        <form th:action="@{/usuario/guardar}"
+              method="POST"
+              th:object="${usuario}">
+
+            <input type="hidden" th:field="*{idUsuario}"/>
+
+            <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                <input type="text"
+                       class="form-control"
+                       th:field="*{nombre}"
+                       maxlength="100"
+                       required/>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Correo electrónico</label>
+                <input type="email"
+                       class="form-control"
+                       th:field="*{correoElectronico}"
+                       maxlength="150"
+                       required/>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Contraseña</label>
+                <input type="password"
+                       class="form-control"
+                       th:field="*{contrasena}"
+                       maxlength="255"
+                       required/>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Teléfono</label>
+                <input type="text"
+                       class="form-control"
+                       th:field="*{telefono}"
+                       maxlength="20"/>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Dirección</label>
+                <input type="text"
+                       class="form-control"
+                       th:field="*{direccion}"
+                       maxlength="200"/>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Estado</label>
+                <select class="form-select"
+                        th:field="*{estado}"
+                        required>
+                    <option value="">Seleccione un estado</option>
+                    <option value="Activo">Activo</option>
+                    <option value="Inactivo">Inactivo</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Rol</label>
+                <select class="form-select"
+                        th:field="*{rol.idRol}"
+                        required>
+                    <option value="">Seleccione un rol</option>
+
+                    <option th:each="rol : ${roles}"
+                            th:value="${rol.idRol}"
+                            th:text="${rol.nombre}">
+                    </option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+                Guardar
+            </button>
+
+            <a th:href="@{/usuario/listado}"
+               class="btn btn-secondary">
+                Cancelar
+            </a>
+
+        </form>
+
+    </main>
+
+    <footer th:replace="~{general/footer :: footer}"></footer>
+
+</body>
+</html>

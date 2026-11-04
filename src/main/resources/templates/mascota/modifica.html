@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{general/head :: head}"></head>
+<body>
+    <header th:replace="~{general/header :: header}"></header>
+
+    <main class="contenido-principal">
+        <h2 th:text="${mascota.idMascota == null ? 'Registrar Mascota' : 'Modificar Mascota'}">
+            Registrar Mascota
+        </h2>
+
+        <form th:action="@{/mascota/guardar}"
+              th:object="${mascota}"
+              method="post">
+
+            <input type="hidden" th:field="*{idMascota}"/>
+
+            <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                <input type="text" class="form-control"
+                       th:field="*{nombre}" required/>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Especie</label>
+                <select class="form-select" th:field="*{especie}" required>
+                    <option value="">Seleccione una especie</option>
+                    <option value="Perro">Perro</option>
+                    <option value="Gato">Gato</option>
+                    <option value="Otro">Otro</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Raza</label>
+                <input type="text" class="form-control"
+                       th:field="*{raza}"/>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Edad (años)</label>
+                <input type="number" class="form-control"
+                       th:field="*{edad}" min="0"/>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Sexo</label>
+                <select class="form-select" th:field="*{sexo}">
+                    <option value="">Seleccione</option>
+                    <option value="Macho">Macho</option>
+                    <option value="Hembra">Hembra</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Tamaño</label>
+                <select class="form-select" th:field="*{tamano}">
+                    <option value="">Seleccione</option>
+                    <option value="Pequeño">Pequeño</option>
+                    <option value="Mediano">Mediano</option>
+                    <option value="Grande">Grande</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Color</label>
+                <input type="text" class="form-control"
+                       th:field="*{color}"/>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Peso (kg)</label>
+                <input type="number" step="0.01" min="0"
+                       class="form-control" th:field="*{peso}"/>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Descripción</label>
+                <textarea class="form-control" rows="3"
+                          th:field="*{descripcion}"></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Fotografía (URL)</label>
+                <input type="text" class="form-control"
+                       th:field="*{fotografia}"/>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Estado</label>
+                <select class="form-select" th:field="*{estado}" required>
+                    <option value="">Seleccione</option>
+                    <option value="Disponible">Disponible</option>
+                    <option value="En proceso">En proceso</option>
+                    <option value="Adoptada">Adoptada</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Fecha de registro</label>
+                <input type="date" class="form-control"
+                       th:field="*{fechaRegistro}"/>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Refugio</label>
+                <select class="form-select" th:field="*{refugio.idRefugio}" required>
+                    <option value="">Seleccione un refugio</option>
+                    <option th:each="refugio : ${refugios}"
+                            th:value="${refugio.idRefugio}"
+                            th:text="${refugio.nombre}">
+                    </option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Guardar</button>
+
+            <a th:href="@{/mascota/listado}" class="btn btn-secondary">
+                Cancelar
+            </a>
+        </form>
+    </main>
+
+    <footer th:replace="~{general/footer :: footer}"></footer>
+</body>
+</html>
+

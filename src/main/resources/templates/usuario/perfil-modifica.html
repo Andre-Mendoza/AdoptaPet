@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{general/head :: head}">
+    <title>AdoptaPet - Modificar perfil</title>
+</head>
+
+<body>
+
+    <header th:replace="~{general/header :: header}"></header>
+
+    <main class="contenido-principal">
+
+        <h2 class="mb-4">Modificar mi perfil</h2>
+
+        <form th:action="@{/usuario/perfil/guardar}" method="POST">
+
+            <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                <input type="text"
+                       name="nombre"
+                       class="form-control"
+                       th:value="${usuario.nombre}"
+                       maxlength="100"
+                       required/>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Correo electrónico</label>
+                <input type="email"
+                       name="correoElectronico"
+                       class="form-control"
+                       th:value="${usuario.correoElectronico}"
+                       maxlength="150"
+                       required/>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Teléfono</label>
+                <input type="text"
+                       name="telefono"
+                       class="form-control"
+                       th:value="${usuario.telefono}"
+                       maxlength="20"/>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Dirección</label>
+                <input type="text"
+                       name="direccion"
+                       class="form-control"
+                       th:value="${usuario.direccion}"
+                       maxlength="200"/>
+            </div>
+
+            <div th:if="${error}"
+                 class="alert alert-danger"
+                 role="alert"
+                 th:text="${error}">
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+                Guardar cambios
+            </button>
+
+            <a th:href="@{/usuario/perfil}"
+               class="btn btn-secondary">
+                Cancelar
+            </a>
+
+        </form>
+
+    </main>
+
+    <footer th:replace="~{general/footer :: footer}"></footer>
+
+</body>
+</html>
+
