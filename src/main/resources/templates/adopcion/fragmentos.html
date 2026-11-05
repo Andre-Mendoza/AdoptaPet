@@ -1,0 +1,247 @@
+
+<!-- Desarrollado por: Isabel -->
+
+<!-- Fragmento: Listado de adopciones -->
+<section th:fragment="listado" class="container-fluid px-4 py-4">
+
+    <!-- Título -->
+    <div class="mb-4">
+
+        <h2 class="fw-bold"
+            style="color: #304B36;"
+            th:text="#{adopcion.listadoTitulo}">
+        </h2>
+
+        <p class="text-muted"
+           th:text="#{adopcion.listadoDescripcion}">
+        </p>
+
+    </div>
+
+    <!-- Tabla de adopciones -->
+    <div class="card shadow-sm border-0"
+         style="border-radius: 15px;">
+
+        <div class="card-body p-4">
+
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle">
+
+                    <thead style="background-color: #E4F1E7;">
+
+                        <tr>
+                            <th th:text="#{adopcion.numero}"></th>
+                            <th th:text="#{adopcion.adoptante}"></th>
+                            <th th:text="#{adopcion.mascota}"></th>
+                            <th th:text="#{adopcion.fechaListado}"></th>
+                            <th th:text="#{adopcion.estado}"></th>
+                            <th th:text="#{adopcion.cierre}"></th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr th:each="a : ${adopciones}">
+
+                            <td th:text="${a.idAdopcion}"></td>
+
+                            <td th:text="${a.usuario.nombre}"></td>
+
+                            <td th:text="${a.mascota.nombre}"></td>
+
+                            <td th:text="${a.fechaAdopcion != null ? #temporals.format(a.fechaAdopcion, 'dd/MM/yyyy') : ''}">
+                            </td>
+
+                            <td>
+
+                                <span class="badge bg-success"
+                                      th:text="${a.estadoAdopcion}">
+                                </span>
+
+                            </td>
+
+                            <td th:text="${a.informacionCierre}"></td>
+
+                        </tr>
+
+                        <tr th:if="${#lists.isEmpty(adopciones)}">
+
+                            <td colspan="6"
+                                class="text-center text-muted py-4"
+                                th:text="#{adopcion.sinRegistros}">
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <!-- Regresar -->
+            <div class="mt-3">
+
+                <a th:href="@{/solicitud/listado}"
+                   class="btn btn-secondary"
+                   th:text="#{adopcion.volver}">
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Fragmento: Formulario de registro de adopción -->
+<section th:fragment="formulario" class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-8">
+
+            <div class="card shadow-sm">
+
+                <div class="card-header bg-success text-white">
+
+                    <h3 class="mb-0"
+                        th:text="#{adopcion.titulo}">
+                    </h3>
+
+                </div>
+
+                <div class="card-body">
+
+                    <p class="text-muted"
+                       th:text="#{adopcion.descripcion}">
+                    </p>
+
+                    <form th:action="@{/adopcion/guardar}"
+                          th:object="${adopcion}"
+                          method="post">
+
+                        <!-- Relación con la solicitud -->
+                        <input type="hidden"
+                               name="solicitud.idSolicitud"
+                               th:value="${solicitud.idSolicitud}"/>
+
+                        <!-- Relación con el usuario -->
+                        <input type="hidden"
+                               name="usuario.idUsuario"
+                               th:value="${solicitud.usuario.idUsuario}"/>
+
+                        <!-- Relación con la mascota -->
+                        <input type="hidden"
+                               name="mascota.idMascota"
+                               th:value="${solicitud.mascota.idMascota}"/>
+
+                        <!-- Solicitante -->
+                        <div class="mb-3">
+
+                            <label class="form-label"
+                                   th:text="#{adopcion.solicitante}">
+                            </label>
+
+                            <input type="text"
+                                   class="form-control"
+                                   th:value="${solicitud.usuario.nombre}"
+                                   readonly/>
+
+                        </div>
+
+                        <!-- Mascota -->
+                        <div class="mb-3">
+
+                            <label class="form-label"
+                                   th:text="#{adopcion.mascota}">
+                            </label>
+
+                            <input type="text"
+                                   class="form-control"
+                                   th:value="${solicitud.mascota.nombre}"
+                                   readonly/>
+
+                        </div>
+
+                        <!-- Fecha de adopción -->
+                        <div class="mb-3">
+
+                            <label class="form-label"
+                                   th:text="#{adopcion.fecha}">
+                            </label>
+
+                            <input type="date"
+                                   class="form-control"
+                                   th:field="*{fechaAdopcion}"
+                                   required/>
+
+                        </div>
+
+                        <!-- Acta -->
+                        <div class="mb-3">
+
+                            <label class="form-label"
+                                   th:text="#{adopcion.acta}">
+                            </label>
+
+                            <input type="text"
+                                   class="form-control"
+                                   name="acta"
+                                   maxlength="100"
+                                   th:placeholder="#{adopcion.actaPlaceholder}"
+                                   required/>
+
+                        </div>
+
+                        <!-- Responsable -->
+                        <div class="mb-3">
+
+                            <label class="form-label"
+                                   th:text="#{adopcion.responsable}">
+                            </label>
+
+                            <input type="text"
+                                   class="form-control"
+                                   name="responsable"
+                                   maxlength="100"
+                                   th:placeholder="#{adopcion.responsablePlaceholder}"
+                                   required/>
+
+                        </div>
+
+                        <!-- Estado de adopción -->
+                        <input type="hidden"
+                               th:field="*{estadoAdopcion}"
+                               value="Finalizada"/>
+
+                        <!-- Botones -->
+                        <div class="d-flex justify-content-end gap-2">
+
+                            <a th:href="@{/solicitud/listado}"
+                               class="btn btn-secondary"
+                               th:text="#{adopcion.cancelar}">
+                            </a>
+
+                            <button type="submit"
+                                    class="btn btn-success"
+                                    th:text="#{adopcion.guardar}">
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

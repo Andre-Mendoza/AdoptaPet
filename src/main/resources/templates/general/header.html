@@ -1,0 +1,156 @@
+
+
+
+
+<aside th:fragment="header" class="menu-lateral">
+
+    <div class="marca">
+        <i class="fa-solid fa-paw"></i>
+        AdoptaPet
+    </div>
+
+    <nav>
+
+        <!-- Opciones generales -->
+        <a th:href="@{/}">
+            <i class="fa-solid fa-house me-2"></i>
+            Inicio
+        </a>
+
+        <!-- Usuario no ha iniciado sesión -->
+        <th:block th:if="${session.usuarioLogueado == null}">
+
+            <a th:href="@{/usuario/login}">
+                <i class="fa-solid fa-right-to-bracket me-2"></i>
+                Iniciar sesión
+            </a>
+
+            <a th:href="@{/usuario/registro}">
+                <i class="fa-solid fa-user-plus me-2"></i>
+                Registrarme
+            </a>
+
+            <a th:href="@{/catalogo/listado}">
+                <i class="fa-solid fa-paw me-2"></i>
+                Catálogo
+            </a>
+
+        </th:block>
+
+        <!-- Opciones del Administrador -->
+        <th:block th:if="${session.usuarioLogueado != null and session.usuarioLogueado.rol.nombre == 'Administrador'}">
+
+            <a th:href="@{/mascota/listado}">
+                <i class="fa-solid fa-paw me-2"></i>
+                Mascotas
+            </a>
+
+            <a th:href="@{/usuario/listado}">
+                <i class="fa-solid fa-users me-2"></i>
+                Usuarios
+            </a>
+
+            <a th:href="@{/refugio/listado}">
+                <i class="fa-solid fa-house-chimney me-2"></i>
+                Refugios
+            </a>
+
+            <a th:href="@{/solicitud/listado}">
+                <i class="fa-solid fa-file-lines me-2"></i>
+                Solicitudes
+            </a>
+
+            <a th:href="@{/adopcion/listado}">
+                <i class="fa-solid fa-heart me-2"></i>
+                Adopciones
+            </a>
+
+            <a th:href="@{/seguimiento/listado}">
+                <i class="fa-solid fa-clipboard-check me-2"></i>
+                Seguimientos
+            </a>
+
+            <a th:href="@{/catalogo/listado}">
+                <i class="fa-solid fa-paw me-2"></i>
+                Catálogo
+            </a>
+
+        </th:block>
+
+        <!-- Opciones del Colaborador -->
+        <th:block th:if="${session.usuarioLogueado != null and session.usuarioLogueado.rol.nombre == 'Colaborador'}">
+
+            <a th:href="@{/mascota/listado}">
+                <i class="fa-solid fa-paw me-2"></i>
+                Mascotas
+            </a>
+
+            <a th:href="@{/solicitud/listado}">
+                <i class="fa-solid fa-file-lines me-2"></i>
+                Solicitudes
+            </a>
+
+            <a th:href="@{/adopcion/listado}">
+                <i class="fa-solid fa-heart me-2"></i>
+                Adopciones
+            </a>
+
+            <a th:href="@{/seguimiento/listado}">
+                <i class="fa-solid fa-clipboard-check me-2"></i>
+                Seguimientos
+            </a>
+
+            <a th:href="@{/catalogo/listado}">
+                <i class="fa-solid fa-paw me-2"></i>
+                Catálogo
+            </a>
+
+        </th:block>
+
+        <!-- Opciones del Adoptante 
+        <th:block th:if="${session.usuarioLogueado != null and session.usuarioLogueado.rol.nombre == 'Adoptante'}">
+
+            <a th:href="@{/catalogo/listado}">
+                <i class="fa-solid fa-paw me-2"></i>
+                Catálogo
+            </a>
+
+        </th:block>-->
+
+
+        <!-- Opciones del Adoptante Modifique  --> 
+        <th:block th:if="${session.usuarioLogueado != null and session.usuarioLogueado.rol.nombre == 'Adoptante'}">
+
+            <a th:href="@{/catalogo/listado}">
+                <i class="fa-solid fa-paw me-2"></i>
+                Catálogo
+            </a>
+
+            <!-- Desarrollado por: Isabel -->
+            <a th:href="@{/solicitud/mis-solicitudes}">
+                <i class="fa-solid fa-clipboard-list me-2"></i>
+                Mis solicitudes
+            </a>
+
+        </th:block>
+
+
+
+        <!-- Perfil y cierre de sesión -->
+        <th:block th:if="${session.usuarioLogueado != null}">
+
+            <a th:href="@{/usuario/perfil}">
+                <i class="fa-solid fa-user me-2"></i>
+                Mi perfil
+            </a>
+
+            <a th:href="@{/usuario/logout}">
+                <i class="fa-solid fa-right-from-bracket me-2"></i>
+                Cerrar sesión
+            </a>
+
+        </th:block>
+
+    </nav>
+
+</aside>

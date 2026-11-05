@@ -1,0 +1,71 @@
+
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{general/head :: head}">
+    <title>AdoptaPet - Mi perfil</title>
+</head>
+
+<body>
+
+    <header th:replace="~{general/header :: header}"></header>
+
+    <main class="contenido-principal">
+
+        <h2 class="mb-4">Mi perfil</h2>
+
+        <div class="card">
+            <div class="card-body">
+
+                <p>
+                    <strong>Nombre:</strong>
+                    <span th:text="${usuario.nombre}"></span>
+                </p>
+
+                <p>
+                    <strong>Rol:</strong>
+                    <span th:text="${usuario.rol.nombre}"></span>
+                </p>
+
+                <p>
+                    <strong>Correo electrónico:</strong>
+                    <span th:text="${usuario.correoElectronico}"></span>
+                </p>
+
+                <p>
+                    <strong>Teléfono:</strong>
+                    <span th:text="${usuario.telefono}"></span>
+                </p>
+
+                <p>
+                    <strong>Dirección:</strong>
+                    <span th:text="${usuario.direccion}"></span>
+                </p>
+
+                <p>
+                    <strong>Estado:</strong>
+                    <span th:text="${usuario.estado}"></span>
+                </p>
+
+                <a th:href="@{/usuario/perfil/modificar}"
+                   class="btn btn-principal">
+                    Modificar perfil
+                </a>
+
+                <a th:href="@{/}"
+                   class="btn btn-secondary">
+                    Volver al inicio
+                </a>
+
+            </div>
+        </div>
+
+    </main>
+
+    <footer th:replace="~{general/footer :: footer}"></footer>
+
+</body>
+</html>

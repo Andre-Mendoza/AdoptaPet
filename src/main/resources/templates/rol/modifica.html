@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{general/head :: head}">
+    <title>AdoptaPet - Formulario de Rol</title>
+</head>
+
+<body>
+
+    <header th:replace="~{general/header :: header}"></header>
+
+    <main class="container mt-4">
+
+        <h2 class="mb-4">Formulario de Rol</h2>
+
+        <form th:action="@{/rol/guardar}"
+              method="POST"
+              th:object="${rol}">
+
+            <input type="hidden" th:field="*{idRol}"/>
+
+            <div class="mb-3">
+                <label for="nombre" class="form-label">
+                    Nombre del rol
+                </label>
+
+                <input type="text"
+                       class="form-control"
+                       id="nombre"
+                       th:field="*{nombre}"
+                       required
+                       maxlength="50"/>
+            </div>
+
+            <div class="mb-3">
+                <label for="descripcion" class="form-label">
+                    Descripción
+                </label>
+
+                <textarea class="form-control"
+                          id="descripcion"
+                          th:field="*{descripcion}"
+                          maxlength="150"
+                          rows="3"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+                Guardar
+            </button>
+
+            <a th:href="@{/rol/listado}" class="btn btn-secondary">
+                Cancelar
+            </a>
+
+        </form>
+
+    </main>
+
+    <footer th:replace="~{general/footer :: footer}"></footer>
+
+</body>
+</html>

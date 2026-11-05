@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{general/head :: head}"></head>
+<body>
+    <header th:replace="~{general/header :: header}"></header>
+
+    <main class="contenido-principal">
+        <h2 th:text="${refugio.idRefugio == null ? 'Registrar Refugio' : 'Modificar Refugio'}">
+            Registrar Refugio
+        </h2>
+
+        <form th:action="@{/refugio/guardar}"
+              th:object="${refugio}"
+              method="post">
+
+            <input type="hidden" th:field="*{idRefugio}"/>
+
+            <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                <input type="text" class="form-control"
+                       th:field="*{nombre}" required/>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Dirección</label>
+                <input type="text" class="form-control"
+                       th:field="*{direccion}"/>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Teléfono</label>
+                <input type="text" class="form-control"
+                       th:field="*{telefono}"/>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Correo electrónico</label>
+                <input type="email" class="form-control"
+                       th:field="*{correoElectronico}"/>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Guardar</button>
+
+            <a th:href="@{/refugio/listado}" class="btn btn-secondary">
+                Cancelar
+            </a>
+        </form>
+    </main>
+
+    <footer th:replace="~{general/footer :: footer}"></footer>
+</body>
+</html>

@@ -1,0 +1,1594 @@
+
+<!-- Desarrollado por: Isabel -->
+<!-- Fragmento para el formulario de solicitud de adopción -->
+
+<section th:fragment="formulario">
+
+    <form th:action="@{/solicitud/guardar}"
+          th:object="${solicitud}"
+          method="post">
+
+        <!-- Indicador de los tres pasos -->
+        <div class="card mb-3">
+            <div class="card-body">
+
+                <ul class="nav nav-pills nav-fill" id="pasosSolicitud">
+
+                    <li class="nav-item">
+                        <a class="nav-link active"
+                           href="#datosPersonales"
+                           style="background-color: #244C38; color: white;">
+
+                            <span class="badge rounded-pill bg-light text-success">1</span>
+                            Datos personales
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           href="#informacionHogar"
+                           style="color: #244C38;">
+
+                            <span class="badge rounded-pill text-bg-success">2</span>
+                            Información del hogar
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           href="#resumenSolicitud"
+                           style="color: #244C38;">
+
+                            <span class="badge rounded-pill text-bg-success">3</span>
+                            Confirmación
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+
+        <div class="row">
+
+            <!-- Columna izquierda -->
+            <div class="col-md-8">
+
+                <!-- Datos personales -->
+                <section id="datosPersonales" class="card p-3 mb-3">
+
+                    <div class="card-body">
+
+                        <h5 class="mb-3">
+                            [[#{solicitud.datosPersonales}]]
+                        </h5>
+
+                        <div class="row">
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">
+                                    [[#{solicitud.nombreCompleto}]]
+                                </label>
+
+                                <input type="text"
+                                       class="form-control"
+                                       th:value="${usuario.nombre}"
+                                       readonly/>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">
+                                    [[#{solicitud.correo}]]
+                                </label>
+
+                                <input type="email"
+                                       class="form-control"
+                                       th:value="${usuario.correoElectronico}"
+                                       readonly/>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">
+                                    [[#{solicitud.telefono}]]
+                                </label>
+
+                                <input type="text"
+                                       class="form-control"
+                                       th:value="${usuario.telefono}"
+                                       readonly/>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">
+                                    [[#{solicitud.direccion}]]
+                                </label>
+
+                                <input type="text"
+                                       class="form-control"
+                                       th:value="${usuario.direccion}"
+                                       readonly/>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- Información del hogar -->
+                <section id="informacionHogar" class="card p-3 mb-3">
+
+                    <div class="card-body">
+
+                        <h5 class="mb-3">
+                            [[#{solicitud.informacionHogar}]]
+                        </h5>
+
+                        <div class="row">
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">
+                                    [[#{solicitud.tipoVivienda}]]
+                                </label>
+
+                                <select th:field="*{tipoVivienda}"
+                                        class="form-select"
+                                        required>
+
+                                    <option value="">Seleccione una opción</option>
+                                    <option value="Casa propia">Casa propia</option>
+                                    <option value="Apartamento propio">Apartamento propio</option>
+                                    <option value="Casa alquilada">Casa alquilada</option>
+                                    <option value="Apartamento alquilado">Apartamento alquilado</option>
+                                    <option value="Otra">Otra</option>
+
+                                </select>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">
+                                    [[#{solicitud.vivenNinos}]]
+                                </label>
+
+                                <select th:field="*{vivenNinos}"
+                                        class="form-select"
+                                        required>
+
+                                    <option value="">Seleccione una opción</option>
+                                    <option value="No">No</option>
+                                    <option value="Sí, menores de 8 años">Sí, menores de 8 años</option>
+                                    <option value="Sí, mayores de 8 años">Sí, mayores de 8 años</option>
+
+                                </select>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">
+                                    [[#{solicitud.tieneMascotas}]]
+                                </label>
+
+                                <select th:field="*{tieneMascotas}"
+                                        class="form-select"
+                                        required>
+
+                                    <option value="">Seleccione una opción</option>
+                                    <option value="No">No</option>
+                                    <option value="Sí, un perro">Sí, un perro</option>
+                                    <option value="Sí, un gato">Sí, un gato</option>
+                                    <option value="Sí, otras mascotas">Sí, otras mascotas</option>
+
+                                </select>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">
+                                    [[#{solicitud.tiempoFuera}]]
+                                </label>
+
+                                <select th:field="*{tiempoFuera}"
+                                        class="form-select"
+                                        required>
+
+                                    <option value="">Seleccione una opción</option>
+                                    <option value="Menos de 4 horas">Menos de 4 horas</option>
+                                    <option value="Entre 4 y 8 horas">Entre 4 y 8 horas</option>
+                                    <option value="Más de 8 horas">Más de 8 horas</option>
+
+                                </select>
+                            </div>
+
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label">
+                                    [[#{solicitud.motivacion}]]
+                                </label>
+
+                                <textarea th:field="*{motivacion}"
+                                          class="form-control"
+                                          rows="3"
+                                          maxlength="255"
+                                          placeholder="Cuéntanos sobre tu motivación y experiencia..."
+                                          required></textarea>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+            <!-- Columna derecha -->
+            <div class="col-md-4">
+
+                <!-- Resumen de solicitud -->
+                <section id="resumenSolicitud" class="card mb-3">
+
+                    <div class="card-body">
+
+                        <h5 class="card-title mb-3">
+                            Resumen de solicitud
+                        </h5>
+
+                        <input type="hidden"
+                               name="mascota.idMascota"
+                               th:value="${mascota.idMascota}"/>
+
+                        <div class="d-flex align-items-center mb-3">
+
+                            <img th:if="${mascota.fotografia != null and !mascota.fotografia.isEmpty()}"
+                                 th:src="${mascota.fotografia}"
+                                 th:alt="${mascota.nombre}"
+                                 width="65"
+                                 height="65"
+                                 style="object-fit: cover;"
+                                 class="rounded me-2"/>
+
+                            <div>
+                                <h6>[[${mascota.nombre}]]</h6>
+                                <small>[[${mascota.especie}]]</small>
+                                <small> • </small>
+                                <small>[[${mascota.edad}]]</small>
+                                <small> años</small>
+                            </div>
+
+                        </div>
+
+                        <div class="form-check mb-3">
+
+                            <input class="form-check-input"
+                                   type="checkbox"
+                                   name="confirmacion"
+                                   value="true"
+                                   required/>
+
+                            <label class="form-check-label">
+                                Confirmo que la información es verídica
+                                y acepto una entrevista de validación del hogar.
+                            </label>
+
+                        </div>
+
+                        <button type="submit"
+                                class="btn btn-principal w-100 mb-2">
+                            <i class="fa-solid fa-heart me-2"></i>
+                            Enviar solicitud
+                        </button>
+
+                        <button type="button"
+                                class="btn btn-outline-secondary w-100"
+                                disabled>
+                            Guardar borrador
+                        </button>
+
+                    </div>
+
+                </section>
+
+                <!-- Aviso de ayuda -->
+                <div class="alert alert-warning" role="alert">
+
+                    <strong>
+                        [[#{solicitud.necesitasAyuda}]]
+                    </strong>
+
+                    <p class="mb-0">
+                        [[#{solicitud.mensajeAyuda}]]
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </form>
+
+</section>
+<!-- Fragmento: Listado de solicitudes -->
+
+<section th:fragment="listado" class="container-fluid px-4 py-4">
+
+    <!-- Título -->
+    <div class="mb-4">
+
+        <h2 class="fw-bold"
+            style="color: #304B36;">
+            [[#{solicitud.evaluacionTitulo}]]
+        </h2>
+
+        <p class="text-muted">
+            [[#{solicitud.evaluacionDescripcion}]]
+        </p>
+
+    </div>
+
+    <!-- Tarjeta principal -->
+    <div class="card border-0 shadow-sm"
+         style="border-radius: 15px;">
+
+        <div class="card-header py-3"
+             style="background-color: #E4EDE3; color: #244C38;">
+
+            <h5 class="mb-0">
+                [[#{solicitud.listado}]]
+            </h5>
+
+        </div>
+
+        <div class="card-body">
+
+            <!-- Buscador y filtro -->
+            <div class="row g-3 mb-3"
+                 th:if="${solicitudes != null and !solicitudes.empty}">
+
+                <!-- Buscador -->
+                <div class="col-md-8">
+
+                    <div class="input-group">
+
+                        <span class="input-group-text bg-white">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </span>
+
+                        <input type="text"
+                               id="buscarSolicitud"
+                               class="form-control"
+                               placeholder="Buscar solicitud...">
+
+                    </div>
+
+                </div>
+
+                <!-- Filtro por estado -->
+                <div class="col-md-4">
+
+                    <select id="filtroEstado" class="form-select">
+
+                        <option value="">Todos los estados</option>
+                        <option value="Pendiente">Pendiente</option>
+
+                        <!-- En revisión se almacena como Pendiente -->
+                        <option value="Pendiente">En revisión</option>
+
+                        <option value="Aprobada">Aprobada</option>
+                        <option value="Rechazada">Rechazada</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <!-- Tabla de solicitudes -->
+            <div class="table-responsive"
+                 th:if="${solicitudes != null and !solicitudes.empty}">
+
+                <table class="table table-hover align-middle">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>[[#{solicitud.numeroSolicitud}]]</th>
+                            <th>[[#{solicitud.solicitante}]]</th>
+                            <th>[[#{solicitud.mascota}]]</th>
+                            <th>[[#{solicitud.fechaSolicitud}]]</th>
+                            <th>[[#{solicitud.estado}]]</th>
+                            <th>[[#{solicitud.acciones}]]</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="tablaSolicitudes">
+
+                        <tr th:each="s : ${solicitudes}">
+
+                            <!-- Número de solicitud -->
+                            <td class="fw-semibold">
+                                [[${s.idSolicitud}]]
+                            </td>
+
+                            <!-- Solicitante -->
+                            <td>
+
+                                <div class="fw-semibold">
+                                    [[${s.usuario.nombre}]]
+                                </div>
+
+                                <small class="text-muted">
+                                    [[${s.usuario.correoElectronico}]]
+                                </small>
+
+                            </td>
+
+                            <!-- Mascota -->
+                            <td>
+
+                                <div class="d-flex align-items-center gap-2">
+
+                                    <img th:if="${s.mascota.fotografia != null and !s.mascota.fotografia.isEmpty()}"
+                                         th:src="${s.mascota.fotografia}"
+                                         th:alt="${s.mascota.nombre}"
+                                         width="45"
+                                         height="45"
+                                         class="rounded-circle"
+                                         style="object-fit: cover;">
+
+                                    <div th:if="${s.mascota.fotografia == null or s.mascota.fotografia.isEmpty()}"
+                                         class="rounded-circle d-flex align-items-center justify-content-center"
+                                         style="width: 45px; height: 45px; background-color: #E4EDE3;">
+
+                                        <i class="fa-solid fa-paw"
+                                           style="color: #548B63;">
+                                        </i>
+
+                                    </div>
+
+                                    <div>
+
+                                        <div class="fw-semibold">
+                                            [[${s.mascota.nombre}]]
+                                        </div>
+
+                                        <small class="text-muted">
+                                            [[${s.mascota.especie}]]
+                                        </small>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+                            <!-- Fecha -->
+                            <td th:text="${s.fechaSolicitud != null ? #temporals.format(s.fechaSolicitud, 'dd/MM/yyyy') : #messages.msg('solicitud.noRegistrada')}">
+                            </td>
+
+                            <!-- Estado -->
+                            <td>
+
+                                <span class="badge rounded-pill bg-warning text-dark"
+                                      th:if="${s.estadoSolicitud == 'Pendiente' or s.estadoSolicitud == 'En revisión'}">
+                                    [[${s.estadoSolicitud}]]
+                                </span>
+
+                                <span class="badge rounded-pill bg-success"
+                                      th:if="${s.estadoSolicitud == 'Aprobada'}">
+                                    [[${s.estadoSolicitud}]]
+                                </span>
+
+                                <span class="badge rounded-pill bg-danger"
+                                      th:if="${s.estadoSolicitud == 'Rechazada'}">
+                                    [[${s.estadoSolicitud}]]
+                                </span>
+
+                            </td>
+
+                            <!-- Acciones -->
+                            <td>
+
+                                <div class="d-flex gap-2">
+
+                                    <!-- Ver solicitud -->
+                                    <a th:href="@{/solicitud/evaluar/{idSolicitud}(idSolicitud=${s.idSolicitud})}"
+                                       class="btn btn-sm btn-outline-success">
+                                        [[#{solicitud.verSolicitud}]]
+                                    </a>
+
+                                    <!-- Aprobar solicitud -->
+                                    <a th:if="${s.estadoSolicitud == 'Pendiente'}"
+                                       th:href="@{/solicitud/aprobar/{idSolicitud}(idSolicitud=${s.idSolicitud})}"
+                                       class="btn btn-sm btn-success">
+                                        [[#{solicitud.aprobar}]]
+                                    </a>
+
+                                    <!-- Rechazar solicitud -->
+                                    <a th:if="${s.estadoSolicitud == 'Pendiente'}"
+                                       th:href="@{/solicitud/rechazar/{idSolicitud}(idSolicitud=${s.idSolicitud})}"
+                                       class="btn btn-sm btn-outline-danger">
+                                        [[#{solicitud.rechazar}]]
+                                    </a>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <!-- Mensaje cuando no hay solicitudes -->
+            <div class="text-center py-5"
+                 th:if="${solicitudes == null or solicitudes.empty}">
+
+                <i class="fa-solid fa-clipboard-list fa-3x mb-3"
+                   style="color: #548B63;">
+                </i>
+
+                <h5 class="fw-bold"
+                    style="color: #304B36;">
+                    [[#{solicitud.sinSolicitudes}]]
+                </h5>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Fragmento: Mis solicitudes -->
+
+<section th:fragment="misSolicitudes" class="p-3">
+
+    <!-- Título y botón para buscar mascotas -->
+    <div class="row p-3 align-items-center">
+
+        <div class="col-md-8">
+            <h2 class="fw-bold">Mis solicitudes</h2>
+            <p>Consulta el estado y los detalles de tus solicitudes de adopción.</p>
+        </div>
+
+        <div class="col-md-4 text-end">
+            <a th:href="@{/catalogo/listado}" class="btn btn-principal">
+                <i class="fa-solid fa-plus me-2"></i>
+                Nueva solicitud
+            </a>
+        </div>
+
+    </div>
+
+    <!-- Resumen de solicitudes -->
+    <div class="row px-3 mb-3">
+
+        <!-- Solicitudes en revisión -->
+        <div class="col-md-4 mb-3">
+
+            <div class="card border-0 shadow-sm h-100">
+
+                <div class="card-body d-flex align-items-center gap-3">
+
+                    <div class="rounded-3 d-flex align-items-center justify-content-center"
+                         style="width: 42px; height: 42px; background-color: #fff1cc;">
+
+                        <i class="fa-regular fa-clock"
+                           style="color: #b58b35; font-size: 18px;">
+                        </i>
+
+                    </div>
+
+                    <div>
+
+                        <h3 class="mb-0 fs-4"
+                            th:text="${#lists.size(solicitudes.?[estadoSolicitud == 'Pendiente' or estadoSolicitud == 'En revisión'])}">
+                        </h3>
+
+                        <small class="text-muted">En revisión</small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Solicitudes aprobadas -->
+        <div class="col-md-4 mb-3">
+
+            <div class="card border-0 shadow-sm h-100">
+
+                <div class="card-body d-flex align-items-center gap-3">
+
+                    <div class="rounded-3 d-flex align-items-center justify-content-center"
+                         style="width: 42px; height: 42px; background-color: #e1f1e5;">
+
+                        <i class="fa-regular fa-circle-check"
+                           style="color: #548b63; font-size: 18px;">
+                        </i>
+
+                    </div>
+
+                    <div>
+
+                        <h3 class="mb-0 fs-4"
+                            th:text="${#lists.size(solicitudes.?[estadoSolicitud == 'Aprobada'])}">
+                        </h3>
+
+                        <small class="text-muted">Aprobadas</small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Solicitudes rechazadas -->
+        <div class="col-md-4 mb-3">
+
+            <div class="card border-0 shadow-sm h-100">
+
+                <div class="card-body d-flex align-items-center gap-3">
+
+                    <div class="rounded-3 d-flex align-items-center justify-content-center"
+                         style="width: 42px; height: 42px; background-color: #f8e2e0;">
+
+                        <i class="fa-regular fa-circle-xmark"
+                           style="color: #bd6861; font-size: 18px;">
+                        </i>
+
+                    </div>
+
+                    <div>
+
+                        <h3 class="mb-0 fs-4"
+                            th:text="${#lists.size(solicitudes.?[estadoSolicitud == 'Rechazada'])}">
+                        </h3>
+
+                        <small class="text-muted">Rechazadas</small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Tabla de solicitudes -->
+    <div class="row p-3">
+
+        <div class="col-md-12">
+
+            <div class="card border-0 shadow-sm">
+
+                <div class="card-header bg-white">
+
+                    <h5 class="mb-0">Listado de solicitudes</h5>
+
+                </div>
+
+                <div class="card-body">
+
+                    <!-- Buscador y filtro -->
+                    <div class="row mb-3"
+                         th:if="${solicitudes != null and !solicitudes.empty}">
+
+                        <div class="col-md-8">
+
+                            <input type="text"
+                                   id="buscarSolicitud"
+                                   class="form-control"
+                                   placeholder="Buscar solicitud..."/>
+
+                        </div>
+
+                        <div class="col-md-4">
+
+                            <select id="filtroEstado" class="form-select">
+
+                                <option value="">Todos los estados</option>
+                                <option value="Pendiente">En revisión</option>
+                                <option value="Aprobada">Aprobadas</option>
+                                <option value="Rechazada">Rechazadas</option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Mostrar solicitudes -->
+                    <div class="table-responsive"
+                         th:if="${solicitudes != null and !solicitudes.empty}">
+
+                        <table class="table table-hover align-middle">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th style="background-color: #E4EDE3; color: #244C38;">#</th>
+
+                                    <th style="background-color: #E4EDE3; color: #244C38;">Mascota</th>
+
+                                    <th style="background-color: #E4EDE3; color: #244C38;">Fecha de solicitud</th>
+
+                                    <th style="background-color: #E4EDE3; color: #244C38;">Estado</th>
+
+                                    <th style="background-color: #E4EDE3; color: #244C38;">Acciones</th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody id="tablaSolicitudes">
+
+                                <tr th:each="s : ${solicitudes}">
+
+                                    <!-- Número de solicitud -->
+                                    <td th:text="${s.idSolicitud}"></td>
+
+                                    <!-- Fotografía y nombre de la mascota -->
+                                    <td>
+
+                                        <div class="d-flex align-items-center">
+
+                                            <img th:if="${s.mascota.fotografia != null and !s.mascota.fotografia.isEmpty()}"
+                                                 th:src="${s.mascota.fotografia}"
+                                                 th:alt="${s.mascota.nombre}"
+                                                 height="50"
+                                                 width="50"
+                                                 style="object-fit: cover;"
+                                                 class="rounded-circle me-2"/>
+
+                                            <span th:text="${s.mascota.nombre}"></span>
+
+                                        </div>
+
+                                    </td>
+
+                                    <!-- Fecha de solicitud -->
+                                    <td th:text="${s.fechaSolicitud != null ? #temporals.format(s.fechaSolicitud, 'dd/MM/yyyy') : ''}">
+                                    </td>
+
+                                    <!-- Estado -->
+                                    <td>
+
+                                        <span class="badge rounded-pill bg-warning text-dark px-2 py-1 small"
+                                              th:if="${s.estadoSolicitud == 'Pendiente' or s.estadoSolicitud == 'En revisión'}">
+                                            [[${s.estadoSolicitud}]]
+                                        </span>
+
+                                        <span class="badge rounded-pill bg-success px-2 py-1 small"
+                                              th:if="${s.estadoSolicitud == 'Aprobada'}">
+                                            [[${s.estadoSolicitud}]]
+                                        </span>
+
+                                        <span class="badge rounded-pill bg-danger px-2 py-1 small"
+                                              th:if="${s.estadoSolicitud == 'Rechazada'}">
+                                            [[${s.estadoSolicitud}]]
+                                        </span>
+
+                                    </td>
+
+                                    <!-- Estado auxiliar para el filtro JavaScript -->
+                                    <td class="d-none">
+                                        [[${s.estadoSolicitud}]]
+                                    </td>
+
+                                    <!-- Acciones -->
+                                    <td>
+
+                                        <a th:href="@{/solicitud/modificar/{idSolicitud}(idSolicitud=${s.idSolicitud})}"
+                                           class="btn btn-sm btn-outline-success">
+                                            Ver solicitud
+                                        </a>
+
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                    <!-- Cuando no existen solicitudes -->
+                    <div class="text-center p-4"
+                         th:if="${solicitudes == null or solicitudes.empty}">
+
+                        <i class="fa-solid fa-paw fa-2x mb-3"></i>
+
+                        <p class="mb-0">
+                            Todavía no tienes solicitudes registradas.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Aviso de notificaciones -->
+    <div class="row p-3">
+
+        <div class="col-md-12">
+
+            <div class="alert alert-info d-flex align-items-center"
+                 role="alert">
+
+                <i class="fa-solid fa-circle-info me-2"></i>
+
+                <div>
+                    Recibirás una notificación por correo cada vez
+                    que cambie el estado de una solicitud.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Fragmento: Evaluación de solicitud -->
+
+<section th:fragment="evaluacion" class="container-fluid px-4 py-4">
+
+    <!-- Título -->
+    <div class="mb-4">
+
+        <h2 class="fw-bold"
+            style="color: #304B36;">
+            [[#{solicitud.evaluacionTitulo}]]
+        </h2>
+
+        <p class="text-muted">
+            [[#{solicitud.evaluacionDescripcion}]]
+        </p>
+
+    </div>
+
+    <div class="row g-4">
+
+        <!-- Información de la solicitud -->
+        <div class="col-lg-8">
+
+            <div class="card border shadow-sm h-100"
+                 style="border-radius: 18px;">
+
+                <div class="card-body p-4">
+
+                    <!-- Encabezado -->
+                    <div class="d-flex justify-content-between align-items-start mb-4">
+
+                        <div>
+
+                            <small class="fw-bold"
+                                   style="color: #A95F3D;">
+                                [[#{solicitud.codigo}]] # [[${solicitud.idSolicitud}]]
+                            </small>
+
+                            <h4 class="mb-0"
+                                style="color: #304B36;">
+                                [[#{solicitud.evaluacionAdopcion}]]
+                            </h4>
+
+                        </div>
+
+                        <!-- Estado pendiente -->
+                        <span class="badge rounded-pill bg-warning text-dark"
+                              th:if="${solicitud.estadoSolicitud == 'Pendiente'}">
+                            [[${solicitud.estadoSolicitud}]]
+                        </span>
+
+                        <!-- Estado aprobado -->
+                        <span class="badge rounded-pill bg-success"
+                              th:if="${solicitud.estadoSolicitud == 'Aprobada'}">
+                            [[${solicitud.estadoSolicitud}]]
+                        </span>
+
+                        <!-- Estado rechazado -->
+                        <span class="badge rounded-pill bg-danger"
+                              th:if="${solicitud.estadoSolicitud == 'Rechazada'}">
+                            [[${solicitud.estadoSolicitud}]]
+                        </span>
+
+                    </div>
+
+                    <!-- Datos generales -->
+                    <div class="mb-4">
+
+                        <div class="row py-2 border-bottom">
+
+                            <div class="col-md-4 text-muted">
+                                <small>[[#{solicitud.solicitante}]]</small>
+                            </div>
+
+                            <div class="col-md-8 fw-semibold">
+                                [[${solicitud.usuario.nombre}]]
+                            </div>
+
+                        </div>
+
+                        <div class="row py-2 border-bottom">
+
+                            <div class="col-md-4 text-muted">
+                                <small>[[#{solicitud.correo}]]</small>
+                            </div>
+
+                            <div class="col-md-8">
+                                [[${solicitud.usuario.correoElectronico}]]
+                            </div>
+
+                        </div>
+
+                        <div class="row py-2 border-bottom">
+
+                            <div class="col-md-4 text-muted">
+                                <small>[[#{solicitud.telefono}]]</small>
+                            </div>
+
+                            <div class="col-md-8">
+                                [[${solicitud.usuario.telefono}]]
+                            </div>
+
+                        </div>
+
+                        <div class="row py-2 border-bottom">
+
+                            <div class="col-md-4 text-muted">
+                                <small>[[#{solicitud.mascotaEvaluacion}]]</small>
+                            </div>
+
+                            <div class="col-md-8 fw-semibold">
+
+                                <span>[[${solicitud.mascota.nombre}]]</span>
+                                <span> · ID # </span>
+                                <span>[[${solicitud.mascota.idMascota}]]</span>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row py-2 border-bottom">
+
+                            <div class="col-md-4 text-muted">
+                                <small>[[#{solicitud.fechaEvaluacion}]]</small>
+                            </div>
+
+                            <div class="col-md-8"
+                                 th:text="${solicitud.fechaSolicitud != null ? #temporals.format(solicitud.fechaSolicitud, 'dd MMM yyyy') : #messages.msg('solicitud.noRegistrada')}">
+                            </div>
+
+                        </div>
+
+                        <div class="row py-2 border-bottom">
+
+                            <div class="col-md-4 text-muted">
+                                <small>[[#{solicitud.viviendaEvaluacion}]]</small>
+                            </div>
+
+                            <div class="col-md-8">
+                                [[${solicitud.tipoVivienda}]]
+                            </div>
+
+                        </div>
+
+                        <div class="row py-2 border-bottom">
+
+                            <div class="col-md-4 text-muted">
+                                <small>[[#{solicitud.otrasMascotasEvaluacion}]]</small>
+                            </div>
+
+                            <div class="col-md-8">
+                                [[${solicitud.tieneMascotas}]]
+                            </div>
+
+                        </div>
+
+                        <div class="row py-2 border-bottom">
+
+                            <div class="col-md-4 text-muted">
+                                <small>[[#{solicitud.tiempoFueraEvaluacion}]]</small>
+                            </div>
+
+                            <div class="col-md-8">
+                                [[${solicitud.tiempoFuera}]]
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Motivación -->
+                    <div class="p-3 mb-3"
+                         style="background-color: #F8F7F2; border-radius: 12px;">
+
+                        <small class="fw-bold text-muted">
+                            [[#{solicitud.motivacionEvaluacion}]]
+                        </small>
+
+                        <p class="mb-0 mt-2">
+                            [[${solicitud.motivacion}]]
+                        </p>
+
+                    </div>
+
+                    <!-- Entrevista y visita -->
+                    <div class="p-3 mb-4"
+                         style="background-color: #E4F1E7; color: #477D50; border-radius: 10px;">
+
+                        <i class="fa-solid fa-shield-heart me-2"></i>
+
+                        <span>
+                            [[#{solicitud.entrevistaRealizada}]]
+                        </span>
+
+                    </div>
+
+                    <!-- Acciones inferiores -->
+                    <div class="d-flex flex-wrap justify-content-between gap-2">
+
+                        <!-- Rechazar solicitud -->
+                        <a th:if="${solicitud.estadoSolicitud == 'Pendiente'}"
+                           th:href="@{/solicitud/rechazar/{idSolicitud}(idSolicitud=${solicitud.idSolicitud})}"
+                           class="btn btn-danger px-4"
+                           style="background-color: #A94442; border: none;"
+                           onclick="return confirm('¿Deseas rechazar esta solicitud?');">
+
+                            <i class="fa-regular fa-circle-xmark me-2"></i>
+                            <span>[[#{solicitud.rechazar}]]</span>
+
+                        </a>
+
+                        <div class="d-flex gap-2">
+
+                            <!-- Registrar adopción cuando está aprobada -->
+                            <a th:if="${solicitud.estadoSolicitud == 'Aprobada'}"
+                               th:href="@{/adopcion/nuevo/{idSolicitud}(idSolicitud=${solicitud.idSolicitud})}"
+                               class="btn btn-success px-4"
+                               style="background-color: #477D50; border: none;">
+
+                                <i class="fa-regular fa-heart me-2"></i>
+                                <span>[[#{solicitud.registroAdopcion}]]</span>
+
+                            </a>
+
+                            <!-- Registro disponible después de aprobar -->
+                            <button th:if="${solicitud.estadoSolicitud != 'Aprobada'}"
+                                    class="btn btn-success px-4"
+                                    style="background-color: #477D50; border: none; opacity: 0.6;"
+                                    disabled>
+
+                                <i class="fa-regular fa-heart me-2"></i>
+                                <span>[[#{solicitud.registroAdopcion}]]</span>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Panel lateral -->
+        <div class="col-lg-4">
+
+            <div class="d-flex flex-column gap-3">
+
+                <!-- Confirmar aprobación -->
+                <div class="card border-0 shadow-sm"
+                     style="border-radius: 18px;">
+
+                    <div class="card-body p-4">
+
+                        <div class="rounded-circle d-flex align-items-center justify-content-center mb-3"
+                             style="width: 44px; height: 44px; background-color: #E4F1E7; color: #477D50;">
+
+                            <i class="fa-regular fa-circle-check"></i>
+
+                        </div>
+
+                        <h5 style="color: #304B36;">
+                            [[#{solicitud.confirmarAprobacionTitulo}]]
+                        </h5>
+
+                        <p class="text-muted small">
+                            [[#{solicitud.preguntaAprobacion}]] [[${solicitud.idSolicitud}]]?
+                        </p>
+
+                        <div th:if="${solicitud.estadoSolicitud == 'Pendiente'}">
+
+                            <a th:href="@{/solicitud/listado}"
+                               class="btn btn-outline-secondary w-100 mb-2">
+                                [[#{solicitud.cancelar}]]
+                            </a>
+
+                            <a th:href="@{/solicitud/aprobar/{idSolicitud}(idSolicitud=${solicitud.idSolicitud})}"
+                               class="btn btn-success w-100"
+                               style="background-color: #477D50; border: none;"
+                               onclick="return confirm('¿Confirmas la aprobación?');">
+                                [[#{solicitud.siAprobar}]]
+                            </a>
+
+                        </div>
+
+                        <p th:if="${solicitud.estadoSolicitud != 'Pendiente'}"
+                           class="text-muted small mb-0">
+                            Esta solicitud ya fue evaluada.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <!-- Rechazar solicitud -->
+                <div class="card shadow-sm"
+                     style="border-radius: 18px; border: 1px solid #F2D6D4;">
+
+                    <div class="card-body p-4">
+
+                        <h5 class="mb-3"
+                            style="color: #304B36;">
+
+                            <i class="fa-solid fa-triangle-exclamation text-danger me-2"></i>
+
+                            <span>[[#{solicitud.rechazar}]]</span>
+
+                        </h5>
+
+                        <p class="text-muted small">
+                            [[#{solicitud.motivoRechazo}]]
+                        </p>
+
+                        <select class="form-select mb-3"
+                                id="motivoRechazo"
+                                style="background-color: #F8F7F2;">
+
+                            <option value="">
+                                [[#{solicitud.seleccionarMotivo}]]
+                            </option>
+
+                            <option>[[#{solicitud.condicionesHogar}]]</option>
+
+                            <option>[[#{solicitud.faltaInformacion}]]</option>
+
+                            <option>[[#{solicitud.noCumpleRequisitos}]]</option>
+
+                            <option>[[#{solicitud.otraRazon}]]</option>
+
+                        </select>
+
+                        <a th:if="${solicitud.estadoSolicitud == 'Pendiente'}"
+                           th:href="@{/solicitud/rechazar/{idSolicitud}(idSolicitud=${solicitud.idSolicitud})}"
+                           class="btn btn-danger w-100"
+                           style="background-color: #A94442; border: none;"
+                           onclick="return confirm('¿Confirmas el rechazo de esta solicitud?');">
+                            [[#{solicitud.confirmarRechazo}]]
+                        </a>
+
+                        <p th:if="${solicitud.estadoSolicitud != 'Pendiente'}"
+                           class="text-muted small mb-0">
+                            Esta solicitud ya fue evaluada.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <!-- Información sobre registro de adopción -->
+                <div class="card border-0"
+                     style="background-color: #F3E2D7; border-radius: 15px;">
+
+                    <div class="card-body p-3">
+
+                        <div class="d-flex gap-3">
+
+                            <i class="fa-regular fa-heart"
+                               style="color: #A95F3D;">
+                            </i>
+
+                            <div>
+
+                                <strong style="color: #A95F3D;">
+                                    [[#{solicitud.registroAdopcion}]]
+                                </strong>
+
+                                <p class="small text-muted mb-0">
+                                    [[#{solicitud.registroAdopcionDisponible}]]
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    </section>
+<!-- Fragmento: Detalle de solicitud -->
+
+<section th:fragment="detalleSolicitud" class="container py-4">
+
+    <!-- Título -->
+    <div class="mb-4">
+
+        <h2 class="fw-bold"
+            style="color: #304B36;"
+            th:text="#{solicitud.detallesTitulo}">
+        </h2>
+
+        <p class="text-muted"
+           th:text="#{solicitud.detallesDescripcion}">
+        </p>
+
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="row g-4">
+
+        <!-- Fotografía de la mascota -->
+        <div class="col-lg-5">
+
+            <div class="card border-0 shadow-sm h-100"
+                 style="border-radius: 15px; overflow: hidden;">
+
+                <img th:if="${solicitud.mascota.fotografia != null and solicitud.mascota.fotografia != ''}"
+                     th:src="${solicitud.mascota.fotografia}"
+                     th:alt="${solicitud.mascota.nombre}"
+                     class="card-img-top"
+                     style="height: 420px; object-fit: cover;">
+
+                <div th:unless="${solicitud.mascota.fotografia != null and solicitud.mascota.fotografia != ''}"
+                     class="d-flex align-items-center justify-content-center"
+                     style="height: 420px; background-color: #E4EDE3;">
+
+                    <i class="fa-solid fa-paw fa-4x"
+                       style="color: #548B63;">
+                    </i>
+
+                </div>
+
+                <div class="card-body">
+
+                    <h4 class="fw-bold mb-1"
+                        style="color: #304B36;"
+                        th:text="${solicitud.mascota.nombre}">
+                    </h4>
+
+                    <small class="text-muted"
+                           th:text="#{solicitud.mascotaSeleccionada}">
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Información de la solicitud -->
+        <div class="col-lg-7">
+
+            <div class="d-flex flex-column gap-3">
+
+                <!-- Datos generales -->
+                <div class="card border-0 shadow-sm"
+                     style="border-radius: 15px;">
+
+                    <div class="card-body p-4">
+
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+
+                            <h4 class="fw-bold mb-0"
+                                style="color: #304B36;"
+                                th:text="#{solicitud.informacionGeneral}">
+                            </h4>
+
+                            <span class="badge rounded-pill bg-warning text-dark"
+                                  th:if="${solicitud.estadoSolicitud == 'Pendiente' or solicitud.estadoSolicitud == 'En revisión'}"
+                                  th:text="${solicitud.estadoSolicitud}">
+                            </span>
+
+                            <span class="badge rounded-pill bg-success"
+                                  th:if="${solicitud.estadoSolicitud == 'Aprobada'}"
+                                  th:text="${solicitud.estadoSolicitud}">
+                            </span>
+
+                            <span class="badge rounded-pill bg-danger"
+                                  th:if="${solicitud.estadoSolicitud == 'Rechazada'}"
+                                  th:text="${solicitud.estadoSolicitud}">
+                            </span>
+
+                        </div>
+
+                        <div class="row g-3">
+
+                            <div class="col-md-6">
+
+                                <small class="text-muted"
+                                       th:text="#{solicitud.numeroSolicitud}">
+                                </small>
+
+                                <p class="fw-semibold mb-0"
+                                   th:text="${solicitud.idSolicitud}">
+                                </p>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <small class="text-muted"
+                                       th:text="#{solicitud.fecha}">
+                                </small>
+
+                                <p class="fw-semibold mb-0"
+                                   th:text="${solicitud.fechaSolicitud != null ? #temporals.format(solicitud.fechaSolicitud, 'dd/MM/yyyy') : #messages.msg('solicitud.noRegistrada')}">
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Información del hogar -->
+                <div class="card border-0 shadow-sm"
+                     style="border-radius: 15px;">
+
+                    <div class="card-body p-4">
+
+                        <h5 class="fw-bold mb-3"
+                            style="color: #304B36;"
+                            th:text="#{solicitud.informacionHogar}">
+                        </h5>
+
+                        <div class="row g-3">
+
+                            <div class="col-md-6">
+
+                                <small class="text-muted"
+                                       th:text="#{solicitud.tipoVivienda}">
+                                </small>
+
+                                <p class="fw-semibold mb-0"
+                                   th:text="${solicitud.tipoVivienda}">
+                                </p>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <small class="text-muted"
+                                       th:text="#{solicitud.vivenNinos}">
+                                </small>
+
+                                <p class="fw-semibold mb-0"
+                                   th:text="${solicitud.vivenNinos}">
+                                </p>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <small class="text-muted"
+                                       th:text="#{solicitud.tieneMascotas}">
+                                </small>
+
+                                <p class="fw-semibold mb-0"
+                                   th:text="${solicitud.tieneMascotas}">
+                                </p>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <small class="text-muted"
+                                       th:text="#{solicitud.tiempoFuera}">
+                                </small>
+
+                                <p class="fw-semibold mb-0"
+                                   th:text="${solicitud.tiempoFuera}">
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Motivación -->
+                <div class="card border-0 shadow-sm"
+                     style="border-radius: 15px;">
+
+                    <div class="card-body p-4">
+
+                        <h5 class="fw-bold mb-3"
+                            style="color: #304B36;"
+                            th:text="#{solicitud.motivacionAdoptar}">
+                        </h5>
+
+                        <p class="mb-0"
+                           th:text="${solicitud.motivacion}">
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Botón regresar -->
+    <div class="d-flex justify-content-end mt-4">
+
+        <a th:href="@{/solicitud/mis-solicitudes}"
+           class="btn"
+           style="background-color: #A95F3D; color: white; border-radius: 8px; padding: 10px 20px;"
+           th:text="#{solicitud.volverMisSolicitudes}">
+        </a>
+
+    </div>
+
+</section>
+
+<!-- Fragmento: Confirmación de solicitud -->
+
+
+<section th:fragment="confirmacion"
+         class="container-fluid d-flex justify-content-center align-items-center py-5">
+
+    <div class="card border-0 shadow-lg text-center p-4 p-md-5"
+         style="max-width: 650px;
+         width: 100%;
+         border-radius: 22px;">
+
+        <!-- Ícono de confirmación -->
+        <div class="d-flex justify-content-center mb-4">
+
+            <div class="rounded-circle d-flex
+                 justify-content-center align-items-center"
+                 style="width: 90px;
+                 height: 90px;
+                 background-color: #E4F1E7;">
+
+                <div class="rounded-circle d-flex
+                     justify-content-center align-items-center"
+                     style="width: 65px;
+                     height: 65px;
+                     background-color: #477D50;
+                     color: white;">
+
+                    <i class="fa-solid fa-check fa-xl"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Mensaje principal -->
+        <h2 class="fw-semibold mb-3"
+            style="color: #304B36;"
+            th:text="#{solicitud.confirmacionTitulo}">
+        </h2>
+
+        <p class="text-muted mb-4"
+           th:text="#{solicitud.confirmacionDescripcion}">
+        </p>
+
+        <!-- Información de la solicitud -->
+        <div class="p-3 mb-4 rounded-3 text-start"
+             style="background-color: #F8F7F2;">
+
+            <div class="row align-items-center">
+
+                <div class="col-7">
+
+                    <small class="text-muted"
+                           style="font-size: 11px;"
+                           th:text="#{solicitud.numeroSolicitud}">
+                    </small>
+
+                    <h5 class="mb-0 fw-semibold"
+                        style="color: #477D50; font-size: 19px;"
+                        th:text="|#{solicitud.prefijoCodigo}${#numbers.formatInteger(solicitud.idSolicitud, 2)}|">
+                    </h5>
+
+                </div>
+
+                <div class="col-5 text-end">
+
+                    <small class="text-muted"
+                           style="font-size: 11px;"
+                           th:text="#{solicitud.estadoInicial}">
+                    </small>
+
+                    <div>
+                        <span class="badge rounded-pill bg-warning text-dark"
+                              th:text="#{solicitud.enRevision}">
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Mensaje informativo -->
+        <p class="small text-muted mb-4"
+           th:text="#{solicitud.mensajeConfirmacion(solicitud.usuario.correoElectronico)}">
+        </p>
+
+        <!-- Botones -->
+        <div class="row g-2">
+
+            <div class="col-md-6">
+
+                <a th:href="@{/catalogo/listado}"
+                   class="btn btn-outline-success w-100 py-2">
+
+                    <i class="fa-solid fa-arrow-left me-2"></i>
+
+                    <span th:text="#{solicitud.volverCatalogo}"></span>
+
+                </a>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <a th:href="@{/solicitud/mis-solicitudes}"
+                   class="btn btn-success w-100 py-2"
+                   style="background-color: #477D50;
+                   border-color: #477D50;">
+
+                    <i class="fa-regular fa-clipboard me-2"></i>
+
+                    <span th:text="#{solicitud.verMisSolicitudes}"></span>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

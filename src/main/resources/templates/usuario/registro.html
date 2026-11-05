@@ -1,0 +1,101 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{general/head :: head}"></head>
+
+<body>
+
+    <header th:replace="~{general/header :: header}"></header>
+
+    <main class="contenido-principal">
+
+        <div class="mb-4">
+            <h1 class="fw-bold">Crear una cuenta</h1>
+            <p class="text-muted">
+                Regístrate en AdoptaPet y comienza a encontrar a tu nuevo mejor amigo.
+            </p>
+        </div>
+
+        <section class="tarjeta p-4" style="max-width: 750px;">
+
+            <!-- Mensaje de error -->
+            <div th:if="${error}"
+                 class="alert alert-danger"
+                 role="alert"
+                 th:text="${error}">
+            </div>
+
+            <form th:action="@{/usuario/registrar}"
+                  th:object="${usuario}"
+                  method="POST">
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Nombre completo</label>
+                    <input type="text"
+                           th:field="*{nombre}"
+                           class="form-control"
+                           placeholder="Ingresa tu nombre completo"
+                           required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Correo electrónico</label>
+                    <input type="email"
+                           th:field="*{correoElectronico}"
+                           class="form-control"
+                           placeholder="ejemplo@correo.com"
+                           required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Contraseña</label>
+                    <input type="password"
+                           th:field="*{contrasena}"
+                           class="form-control"
+                           placeholder="Crea una contraseña"
+                           required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Teléfono</label>
+                    <input type="text"
+                           th:field="*{telefono}"
+                           class="form-control"
+                           placeholder="Ingresa tu teléfono">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Dirección</label>
+                    <input type="text"
+                           th:field="*{direccion}"
+                           class="form-control"
+                           placeholder="Ingresa tu dirección">
+                </div>
+
+                <div class="d-flex gap-2 mt-4">
+
+                    <button type="submit" class="btn btn-principal">
+                        <i class="fa-solid fa-user-plus me-2"></i>
+                        Registrarme
+                    </button>
+
+                    <a th:href="@{/}" class="btn btn-outline-secondary">
+                        Cancelar
+                    </a>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+    <footer th:replace="~{general/footer :: footer}"></footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

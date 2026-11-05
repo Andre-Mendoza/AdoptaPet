@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<!-- Desarrollado por: Isabel -->
+<!-- Función: Mostrar el formulario para registrar una adopción -->
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace="~{general/head :: head}"></head>
+
+    <body>
+
+        <header th:replace="~{general/header :: header}"></header>
+
+        <main class="contenido-principal">
+            <section th:replace="~{adopcion/fragmentos :: formulario}"></section>
+        </main>
+
+        <footer th:replace="~{general/footer :: footer}"></footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    </body>
+</html>
