@@ -1,4 +1,5 @@
 
+
 package com.adoptaPet.controller;
 
 import com.adoptaPet.domain.Usuario;
@@ -41,7 +42,10 @@ public class UsuarioController {
 
     // Guardar usuario desde administración
     @PostMapping("/guardar")
-    public String guardar(Usuario usuario, HttpSession session) {
+    public String guardar(
+            Usuario usuario,
+            HttpSession session,
+            Model model) {
 
         Usuario usuarioSesion =
                 (Usuario) session.getAttribute("usuarioLogueado");
@@ -50,6 +54,25 @@ public class UsuarioController {
                 || !"Administrador".equalsIgnoreCase(
                         usuarioSesion.getRol().getNombre())) {
             return "redirect:/usuario/login";
+        }
+
+        // Validar que el correo no pertenezca a otro usuario
+        Usuario usuarioExistente =
+                usuarioService.getUsuarioPorCorreo(
+                        usuario.getCorreoElectronico()
+                );
+
+        if (usuarioExistente != null
+                && (usuario.getIdUsuario() == null
+                || !usuarioExistente.getIdUsuario()
+                        .equals(usuario.getIdUsuario()))) {
+
+            model.addAttribute("usuario", usuario);
+            model.addAttribute("roles", rolService.getRoles());
+            model.addAttribute("error",
+                    "Este correo electrónico ya se encuentra registrado.");
+
+            return "/usuario/modifica";
         }
 
         usuarioService.save(usuario);

@@ -1,0 +1,70 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{general/head :: head}">
+    <title th:text="#{adopcion.listado}">AdoptaPet - Adopciones</title>
+</head>
+
+<body>
+
+    <header th:replace="~{general/header :: header}"></header>
+
+    <main class="container mt-4">
+
+        <div class="mb-4">
+            <h2 th:text="#{adopcion.listado}">Gestión de adopciones</h2>
+            <p th:text="#{adopcion.descripcion}">
+                Consulta las adopciones registradas en el sistema.
+            </p>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+
+                <thead class="table-dark">
+                    <tr>
+                        <th th:text="#{adopcion.id}">ID</th>
+                        <th th:text="#{adopcion.fecha}">Fecha</th>
+                        <th th:text="#{adopcion.mascota}">Mascota</th>
+                        <th th:text="#{adopcion.usuario}">Adoptante</th>
+                        <th th:text="#{adopcion.estado}">Estado</th>
+                        <th th:text="#{adopcion.acciones}">Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr th:each="adopcion : ${adopciones}">
+                        <td th:text="${adopcion.idAdopcion}"></td>
+                        <td th:text="${adopcion.fechaAdopcion}"></td>
+                        <td th:text="${adopcion.mascota.nombre}"></td>
+                        <td th:text="${adopcion.usuario.nombre}"></td>
+                        <td th:text="${adopcion.estadoAdopcion}"></td>
+                        <td>
+                            <a th:href="@{/adopcion/detalle/{id}(id=${adopcion.idAdopcion})}"
+                               class="btn btn-info btn-sm"
+                               th:text="#{adopcion.verDetalle}">
+                                Ver detalle
+                            </a>
+                        </td>
+                    </tr>
+
+                    <tr th:if="${#lists.isEmpty(adopciones)}">
+                        <td colspan="6" class="text-center"
+                            th:text="#{adopcion.sinRegistros}">
+                            No hay adopciones registradas.
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+
+    </main>
+
+    <footer th:replace="~{general/footer :: footer}"></footer>
+
+</body>
+</html>

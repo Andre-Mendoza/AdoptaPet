@@ -46,4 +46,21 @@ public class AdopcionController {
         adopcionService.delete(adopcion.getIdAdopcion());
         return "redirect:/adopcion/listado";
     }
+    
+    @GetMapping("/detalle/{id}")
+    public String detalle(
+            @org.springframework.web.bind.annotation.PathVariable Integer id,
+            Model model) {
+
+        Adopcion adopcion = adopcionService.getAdopcion(id);
+
+        if (adopcion == null) {
+            return "redirect:/adopcion/listado";
+        }
+
+        model.addAttribute("adopcion", adopcion);
+
+        return "/adopcion/detalle";
+    }
+
 }

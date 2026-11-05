@@ -34,4 +34,13 @@ public class MascotaService {
     public void delete(Integer idMascota) {
         mascotaRepository.deleteById(idMascota);
     }
+
+    @Transactional(readOnly = true)
+    public List<Mascota> getMascotasDisponibles() {
+        return mascotaRepository.findAll()
+                .stream()
+                .filter(m -> "Disponible".equalsIgnoreCase(m.getEstado()))
+                .limit(3)
+                .toList();
+    }
 }

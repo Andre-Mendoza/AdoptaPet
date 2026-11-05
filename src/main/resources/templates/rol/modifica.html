@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
@@ -10,50 +11,84 @@
 
     <header th:replace="~{general/header :: header}"></header>
 
-    <main class="container mt-4">
+    <main class="contenido-principal container-fluid py-4">
 
-        <h2 class="mb-4">Formulario de Rol</h2>
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-9 col-xl-8">
 
-        <form th:action="@{/rol/guardar}"
-              method="POST"
-              th:object="${rol}">
+                <div class="card shadow-sm border-0">
 
-            <input type="hidden" th:field="*{idRol}"/>
+                    <div class="card-header bg-primary text-white py-3">
+                        <h2 class="mb-0">Formulario de Rol</h2>
+                    </div>
 
-            <div class="mb-3">
-                <label for="nombre" class="form-label">
-                    Nombre del rol
-                </label>
+                    <main class="contenido-principal">
 
-                <input type="text"
-                       class="form-control"
-                       id="nombre"
-                       th:field="*{nombre}"
-                       required
-                       maxlength="50"/>
+                        <p class="text-muted mb-4">
+                            Complete la información correspondiente al rol.
+                        </p>
+
+                        <form th:action="@{/rol/guardar}"
+                              method="POST"
+                              th:object="${rol}">
+
+                            <input type="hidden" th:field="*{idRol}"/>
+
+                            <div class="mb-4">
+                                <label for="nombre" class="form-label fw-bold">
+                                    Nombre del rol
+                                </label>
+
+                                <input type="text"
+                                       class="form-control"
+                                       id="nombre"
+                                       th:field="*{nombre}"
+                                       placeholder="Ingrese el nombre del rol"
+                                       required
+                                       maxlength="50"/>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="descripcion" class="form-label fw-bold">
+                                    Descripción
+                                </label>
+
+                                <textarea class="form-control"
+                                          id="descripcion"
+                                          th:field="*{descripcion}"
+                                          placeholder="Describa las funciones de este rol"
+                                          maxlength="150"
+                                          rows="4"></textarea>
+
+                                <div class="form-text">
+                                    Máximo 150 caracteres.
+                                </div>
+                            </div>
+
+                            <hr class="my-4"/>
+
+                            <div class="d-flex justify-content-end gap-2">
+
+                                <a th:href="@{/rol/listado}"
+                                   class="btn btn-secondary">
+                                    Cancelar
+                                </a>
+
+                                <button type="submit"
+                                        class="btn btn-primary">
+                                    <i class="fas fa-save me-1"></i>
+                                    Guardar cambios
+                                </button>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+
             </div>
-
-            <div class="mb-3">
-                <label for="descripcion" class="form-label">
-                    Descripción
-                </label>
-
-                <textarea class="form-control"
-                          id="descripcion"
-                          th:field="*{descripcion}"
-                          maxlength="150"
-                          rows="3"></textarea>
-            </div>
-
-            <button type="submit" class="btn btn-primary">
-                Guardar
-            </button>
-
-            <a th:href="@{/rol/listado}" class="btn btn-secondary">
-                Cancelar
-            </a>
-
-        </form>
+        </div>
 
     </main>
 

@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{general/head :: head}">
+    <title th:text="#{adopcion.detalle.titulo}">Detalle de adopción</title>
+</head>
+
+<body>
+
+    <header th:replace="~{general/header :: header}"></header>
+
+    <main class="container mt-4">
+
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h2 th:text="#{adopcion.detalle.titulo}">Detalle de adopción</h2>
+            </div>
+
+            <div class="card-body">
+
+                <p>
+                    <strong th:text="#{adopcion.id}">ID:</strong>
+                    <span th:text="${adopcion.idAdopcion}"></span>
+                </p>
+
+                <p>
+                    <strong th:text="#{adopcion.fecha}">Fecha:</strong>
+                    <span th:text="${adopcion.fechaAdopcion}"></span>
+                </p>
+
+                <p>
+                    <strong th:text="#{adopcion.mascota}">Mascota:</strong>
+                    <span th:text="${adopcion.mascota.nombre}"></span>
+                </p>
+
+                <p>
+                    <strong th:text="#{adopcion.usuario}">Adoptante:</strong>
+                    <span th:text="${adopcion.usuario.nombre}"></span>
+                </p>
+
+                <p>
+                    <strong th:text="#{adopcion.estado}">Estado:</strong>
+                    <span th:text="${adopcion.estadoAdopcion}"></span>
+                </p>
+
+                <p>
+                    <strong th:text="#{adopcion.informacionCierre}">Información de cierre:</strong>
+                    <span th:text="${adopcion.informacionCierre}"></span>
+                </p>
+
+                <a th:href="@{/adopcion/listado}"
+                   class="btn btn-secondary"
+                   th:text="#{adopcion.volver}">
+                    Volver
+                </a>
+
+            </div>
+        </div>
+
+    </main>
+
+    <footer th:replace="~{general/footer :: footer}"></footer>
+
+</body>
+</html>
