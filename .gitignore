@@ -35,3 +35,4 @@ build/
 application-local.properties
 .env
 .env.*
+src/main/resources/firebase/*.json

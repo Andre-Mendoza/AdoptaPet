@@ -13,7 +13,8 @@
 
         <form th:action="@{/mascota/guardar}"
               th:object="${mascota}"
-              method="post">
+              method="post"
+              enctype="multipart/form-data">
 
             <input type="hidden" th:field="*{idMascota}"/>
 
@@ -83,9 +84,22 @@
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Fotografía (URL)</label>
-                <input type="text" class="form-control"
-                       th:field="*{fotografia}"/>
+                <label class="form-label">Fotografía de la mascota</label>
+                <input type="file"
+                       class="form-control"
+                       name="imagen"
+                       accept="image/*"/>
+            </div>
+
+            <div class="mb-3"
+                 th:if="${mascota.fotografia != null
+                         and !mascota.fotografia.isEmpty()}">
+                <label class="form-label">Fotografía actual</label>
+                <div>
+                    <img th:src="${mascota.fotografia}"
+                         alt="Fotografía de la mascota"
+                         style="max-width: 200px; max-height: 200px;"/>
+                </div>
             </div>
 
             <div class="mb-3">
@@ -106,7 +120,8 @@
 
             <div class="mb-3">
                 <label class="form-label">Refugio</label>
-                <select class="form-select" th:field="*{refugio.idRefugio}" required>
+                <select class="form-select"
+                        th:field="*{refugio.idRefugio}" required>
                     <option value="">Seleccione un refugio</option>
                     <option th:each="refugio : ${refugios}"
                             th:value="${refugio.idRefugio}"
@@ -126,4 +141,3 @@
     <footer th:replace="~{general/footer :: footer}"></footer>
 </body>
 </html>
-

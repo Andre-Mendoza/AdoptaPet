@@ -115,6 +115,11 @@
             <groupId>org.webjars</groupId>
             <artifactId>webjars-locator-lite</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.google.firebase</groupId>
+            <artifactId>firebase-admin</artifactId>
+            <version>9.10.0</version>
+        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>

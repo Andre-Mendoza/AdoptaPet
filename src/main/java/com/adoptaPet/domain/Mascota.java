@@ -47,7 +47,7 @@ public class Mascota {
     @Column(name = "descripcion")
     private String descripcion;
 
-    @Column(name = "fotografia", length = 500)
+    @Column(name = "fotografia", columnDefinition = "LONGTEXT")
     private String fotografia;
 
     @Column(name = "estado", nullable = false, length = 30)

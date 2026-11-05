@@ -1,3 +1,4 @@
+
 package com.adoptaPet.service;
 
 import com.adoptaPet.domain.Mascota;
@@ -26,8 +27,8 @@ public class MascotaService {
     }
 
     @Transactional
-    public void save(Mascota mascota) {
-        mascotaRepository.save(mascota);
+    public Mascota save(Mascota mascota) {
+        return mascotaRepository.save(mascota);
     }
 
     @Transactional
